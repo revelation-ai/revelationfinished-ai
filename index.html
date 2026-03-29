@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Revelation AI</title>
+<style>
+body { font-family: Arial; background: #111; color: white; padding: 20px; }
+#chat { height: 400px; overflow-y: auto; border: 1px solid #444; padding: 10px; margin-bottom: 10px; }
+input { width: 75%; padding: 10px; }
+button { padding: 10px; background: gold; border: none; cursor: pointer; }
+</style>
+</head>
+<body>
+<h2>Ask Revelation AI</h2>
+<div id="chat"></div>
+<input id="question" placeholder="Ask about Revelation Chapter 1..." />
+<button onclick="ask()">Send</button>
+
+<script>
+let chapter1 = "";
+fetch("chapter1.pdf")
+.then(response => response.blob())
+.then(data => { chapter1 = "Revelation Chapter 1 loaded"; });
+
+function ask() {
+  let q = document.getElementById("question").value;
+  let chat = document.getElementById("chat");
+  chat.innerHTML += "<p><b>You:</b> " + q + "</p>";
+  chat.innerHTML += "<p><b>Revelation AI:</b> Chapter 1 is available. AI connection comes next.</p>";
+  document.getElementById("question").value = "";
+}
+</script>
+
+</body>
+</html>
