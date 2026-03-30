@@ -1,76 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Revelation AI</title>
-
-<style>
-body {
-    font-family: Arial;
-    background: #111;
-    color: white;
-    padding: 20px;
-}
-
-#chat {
-    height: 400px;
-    overflow-y: auto;
-    border: 1px solid #444;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-input {
-    width: 75%;
-    padding: 10px;
-}
-
-button {
-    padding: 10px;
-    background: gold;
-    border: none;
-    cursor: pointer;
-}
-</style>
-
-</head>
-<body>
-
-<h2>Revelation AI</h2>
-
-<div id="chat"></div>
-
-<input id="question" placeholder="Ask about Revelation Chapter 1..." />
-<button onclick="ask()">Send</button>
-
+<script src="https://cdn.jsdelivr.net/gh/openai/gpt-js/gpt.min.js"></script>
 <script>
 let chapterText = "";
 
 // Load Chapter 1
 fetch("chapter1.txt")
-.then(response => response.text())
-.then(text => {
-    chapterText = text;
-});
+  .then(response => response.text())
+  .then(text => { chapterText = text; });
 
-// Ask function
-function ask() {
-
+async function ask() {
     let question = document.getElementById("question").value;
     let chat = document.getElementById("chat");
-
     if (!question) return;
 
     chat.innerHTML += "<p><b>You:</b> " + question + "</p>";
-
     document.getElementById("question").value = "";
 
-    let answer = "Answer based on Chapter 1: " + chapterText.substring(0,300) + "...";
+    // Call GPT-5.4 Mini
+    const answer = await GPT.generate({
+        model: "gpt-5.4-mini",
+        prompt: `You are Revelation AI. Use the following chapter text to answer the question clearly and simply.\n\nChapter 1:\n${chapterText}\n\nQuestion: ${question}\nAnswer:`,
+        temperature: 0.3,
+        max_tokens: 300
+    });
 
-    chat.innerHTML += "<p><b>Revelation AI:</b> " + answer + "</p>";
-
+    chat.innerHTML += "<p><b>Revelation AI:</b> " + answer.text + "</p>";
     chat.scrollTop = chat.scrollHeight;
 }
 </script>
-
-</body>
-</html>
