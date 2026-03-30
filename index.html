@@ -4,10 +4,20 @@
     <title>Revelation AI</title>
     <style>
         body {
-            font-family: Arial;
+            font-family: Arial, sans-serif;
             background: #111;
             color: white;
             padding: 20px;
+        }
+
+        h2 {
+            color: gold;
+        }
+
+        p.intro {
+            font-size: 16px;
+            color: #ddd;
+            margin-bottom: 20px;
         }
 
         #chat-container {
@@ -18,9 +28,14 @@
             margin-bottom: 10px;
         }
 
+        #chat-container div#chat p {
+            margin: 5px 0;
+        }
+
         input {
             width: 75%;
             padding: 10px;
+            margin-right: 5px;
         }
 
         button {
@@ -34,10 +49,13 @@
 <body>
 
 <h2>Revelation AI</h2>
+<p class="intro">
+Ask questions about <strong>The Book of Revelation</strong> and get clear answers from Chapter 1!
+</p>
 
 <div id="chat-container">
     <div id="chat"></div>
-    <input id="question" placeholder="Ask about Revelation Chapter 1..." />
+    <input id="question" placeholder="Type your question here..." />
     <button onclick="ask()">Send</button>
 </div>
 
