@@ -1,3 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Revelation AI</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #111;
+            color: white;
+            padding: 20px;
+        }
+
+        #chat-container {
+            height: 400px;
+            overflow-y: auto;
+            border: 1px solid #444;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 75%;
+            padding: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background: gold;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Revelation AI</h2>
+
+<div id="chat-container">
+    <div id="chat"></div>
+    <input id="question" placeholder="Ask about Revelation Chapter 1..." />
+    <button onclick="ask()">Send</button>
+</div>
+
 <script src="https://cdn.jsdelivr.net/gh/openai/gpt-js/gpt.min.js"></script>
 <script>
 let chapterText = "";
@@ -27,3 +70,6 @@ async function ask() {
     chat.scrollTop = chat.scrollHeight;
 }
 </script>
+
+</body>
+</html>
